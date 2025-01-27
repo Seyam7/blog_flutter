@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:blog_flutter/utils/config.dart';
 import 'package:blog_flutter/views/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          'PW Blog',
+          AppConfig.appname,
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w600,
