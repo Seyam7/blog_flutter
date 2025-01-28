@@ -1,4 +1,5 @@
 import 'package:blog_flutter/utils/config.dart';
+import 'package:blog_flutter/views/my_posts/my_posts.dart';
 import 'package:blog_flutter/views/post_create_or_update/post_create_or_update.dart';
 import 'package:blog_flutter/views/post_details/post_details.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppConfig.appname),
+        title: Text(AppConfig.appName),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: (){
+                Get.to(()=>MyPostsView());
+              },
+              icon: Icon(Icons.menu_book),
+          ),
+        ],
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(10),

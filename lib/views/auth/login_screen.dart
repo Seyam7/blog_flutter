@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 15,),
             ElevatedButton(
               onPressed: () {
-                Get.offAll(HomeScreen());
+                Get.offAll(()=>HomeScreen());
               },
               child: Text('Login'),
             ),

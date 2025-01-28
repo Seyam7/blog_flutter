@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          AppConfig.appname,
+          AppConfig.appName,
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w600,

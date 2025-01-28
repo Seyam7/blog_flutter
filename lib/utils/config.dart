@@ -1,3 +1,3 @@
 class AppConfig{
-  static const String appname = 'PW Blog';
+  static const String appName = 'PW Blog';
 }
