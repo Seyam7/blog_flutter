@@ -1,10 +1,14 @@
+import 'package:blog_flutter/controllers/post_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PostCreateOrUpdateView extends StatelessWidget {
   const PostCreateOrUpdateView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(PostController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Create a new post'),
@@ -20,7 +24,9 @@ class PostCreateOrUpdateView extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             TextFormField(
               maxLines: 10,
               minLines: 10,
@@ -29,32 +35,46 @@ class PostCreateOrUpdateView extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text('Thumbnail'),
-            SizedBox(height: 2,),
-            Row(
-              children: [
-                Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black,
+            SizedBox(
+              height: 2,
+            ),
+            Obx(
+                  ()=>InkWell(
+                    onTap: () {
+                      controller.selectThumbnail();
+                    },
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        image: controller.thumbnail.value.path.isEmpty
+                            ? null
+                            : DecorationImage(
+                          image: FileImage(controller.thumbnail.value),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Center(
+                        child: Icon(Icons.add),
+                      ),
                     ),
                   ),
-                  child: Center(
-                    child: Icon(Icons.add),
-
-                  ),
-                ),
-              ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Center(
               child: ElevatedButton(
-                  onPressed: (){},
-                  child: Text('Create Post'),
+                onPressed: () {},
+                child: Text('Create Post'),
               ),
             ),
           ],
