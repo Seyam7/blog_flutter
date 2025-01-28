@@ -1,4 +1,5 @@
 import 'package:blog_flutter/utils/config.dart';
+import 'package:blog_flutter/views/post_create_or_update/post_create_or_update.dart';
 import 'package:blog_flutter/views/post_details/post_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (_,index){
             return InkWell(
               onTap: (){
-                Get.to(PostDetailsView());
+                Get.to(()=>PostDetailsView());
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
-
+            Get.to(()=>PostCreateOrUpdateView());
           },
         child: Icon(Icons.add),
       ),
