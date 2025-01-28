@@ -1,4 +1,6 @@
+import 'package:blog_flutter/views/post_create_or_update/post_create_or_update.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyPostsView extends StatelessWidget {
   const MyPostsView({super.key});
@@ -43,9 +45,23 @@ class MyPostsView extends StatelessWidget {
                       return [
                         PopupMenuItem(
                           child: Text('Edit Post'),
+                          onTap: (){
+                            Get.to(()=>PostCreateOrUpdateView());
+                          },
                         ),
                         PopupMenuItem(
                           child: Text('Delete Post'),
+                          onTap: (){
+                            Get.defaultDialog(
+                              title: 'Are you sure?',
+                              content: Text('Do you really want to delete this post?'),
+                              textConfirm: 'Yes I\'m sure',
+                              textCancel: 'Cancel',
+                              onConfirm: (){
+                                print('post deleted');
+                              },
+                            );
+                          },
                         ),
                       ];
                     },
