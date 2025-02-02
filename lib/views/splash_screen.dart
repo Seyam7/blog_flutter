@@ -25,12 +25,22 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          AppConfig.appName,
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              AppConfig.appName,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Image.network(
+                'https://cdn-icons-png.flaticon.com/512/10026/10026257.png',
+              height: 200,
+              width: 200,
+            ),
+          ],
         ),
       ),
     );
