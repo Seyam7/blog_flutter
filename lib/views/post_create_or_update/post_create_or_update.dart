@@ -15,69 +15,84 @@ class PostCreateOrUpdateView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Title',
-                border: OutlineInputBorder(),
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'Title field can\'t be empty';
+                  }
+                },
+                decoration: InputDecoration(
+                  hintText: 'Title',
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              maxLines: 10,
-              minLines: 10,
-              decoration: InputDecoration(
-                hintText: 'Description',
-                border: OutlineInputBorder(),
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text('Thumbnail'),
-            SizedBox(
-              height: 2,
-            ),
-            Obx(
-                  ()=>InkWell(
-                    onTap: () {
-                      controller.selectThumbnail();
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          color: Colors.black,
+              TextFormField(
+                maxLines: 10,
+                minLines: 10,
+                decoration: InputDecoration(
+                  hintText: 'Description',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'Description can\'t be empty';
+                  }
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text('Thumbnail'),
+              SizedBox(
+                height: 2,
+              ),
+              Obx(
+                    ()=>InkWell(
+                      onTap: () {
+                        controller.selectThumbnail();
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                          image: controller.thumbnail.value.path.isEmpty
+                              ? null
+                              : DecorationImage(
+                            image: FileImage(controller.thumbnail.value),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        image: controller.thumbnail.value.path.isEmpty
-                            ? null
-                            : DecorationImage(
-                          image: FileImage(controller.thumbnail.value),
-                          fit: BoxFit.cover,
+                        child: Center(
+                          child: Icon(Icons.add),
                         ),
-                      ),
-                      child: Center(
-                        child: Icon(Icons.add),
                       ),
                     ),
-                  ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Create Post'),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    controller.createPost();
+                  },
+                  child: Text('Create Post'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
